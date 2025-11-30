@@ -1,0 +1,229 @@
+/* GLOBAL PAGE RESET */
+/* Streamlit handles the body background via config.toml */
+
+/* REMOVE EXCESS PADDING */
+/* REMOVE EXCESS PADDING - Handled below */
+
+/* TYPOGRAPHY */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 700;
+    color: #1d1d1f;
+    /* Apple dark gray */
+}
+
+p,
+label,
+span,
+div {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: #333333;
+}
+
+/* APPLE-STYLE CARDS */
+.card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 24px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    height: 100%;
+    min-height: 280px;
+    /* Ensure equal height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* MEDICAL CARD OVERRIDES */
+.medical-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 20px;
+    /* border-left removed to avoid curved bracket look */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+}
+
+/* BUTTONS */
+.stButton>button {
+    background-color: #007AFF !important;
+    /* Apple Blue */
+    color: white !important;
+    padding: 0.6rem 1.2rem;
+    border-radius: 980px;
+    /* Pill shape */
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
+    transition: all 0.2s ease;
+}
+
+.stButton>button:hover {
+    background-color: #0062cc !important;
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+}
+
+/* INPUT FIELDS */
+input,
+textarea,
+select,
+.stTextInput>div>div>input {
+    border-radius: 12px !important;
+    border: 1px solid #e5e5e5 !important;
+    background-color: #fbfbfd !important;
+    color: #1d1d1f !important;
+    transition: border-color 0.2s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.stTextInput>div>div>input:focus {
+    border-color: #007AFF !important;
+    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1) !important;
+}
+
+/* NAVBAR */
+.navbar {
+    background-color: rgba(255, 255, 255, 0.98);
+    /* High opacity white */
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 1rem 2rem;
+    position: fixed;
+    /* Changed from sticky to fixed to ensure it stays on top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999;
+    /* High z-index to sit above Streamlit elements */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    /* Fixed height */
+}
+
+/* Ensure Streamlit Toolbar (Deploy button, Hamburger) is visible */
+header[data-testid="stHeader"] {
+    z-index: 1000000 !important;
+    background: transparent !important;
+}
+
+/* Adjust block-container to account for fixed navbar */
+.block-container {
+    padding-top: 6rem !important;
+    /* Push content down */
+    padding-bottom: 2rem;
+}
+
+.nav-logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #1d1d1f;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: #86868b;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.nav-link:hover {
+    color: #007AFF;
+}
+
+/* FOOTER */
+.footer {
+    margin-top: 4rem;
+    padding: 2rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    color: #86868b;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* MEDICAL CARD OVERRIDES */
+.medical-card {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 20px;
+    /* border-left removed to avoid curved bracket look */
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+}
+
+.medical-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 20px;
+    /* Detach from top corner */
+    bottom: 20px;
+    /* Detach from bottom corner */
+    width: 3px;
+    /* Thinner width */
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #008080;
+}
+
+.medical-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.medical-header {
+    color: #008080;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}

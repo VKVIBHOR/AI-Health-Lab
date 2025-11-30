@@ -1,0 +1,32 @@
+[
+    {
+        "timestamp": "2025-11-30 20:17:31",
+        "model": "Skin Cancer",
+        "result": "melanoma",
+        "probability": "0.79"
+    },
+    {
+        "timestamp": "2025-11-30 20:23:18",
+        "model": "Diabetes",
+        "result": "High Risk",
+        "probability": "0.90"
+    },
+    {
+        "timestamp": "2025-11-30 20:23:40",
+        "model": "Diabetes",
+        "result": "High Risk",
+        "probability": "0.89"
+    },
+    {
+        "timestamp": "2025-11-30 20:24:07",
+        "model": "Diabetes",
+        "result": "High Risk",
+        "probability": "0.54"
+    },
+    {
+        "timestamp": "2025-11-30 20:24:14",
+        "model": "Diabetes",
+        "result": "Low Risk",
+        "probability": "0.49"
+    }
+]
