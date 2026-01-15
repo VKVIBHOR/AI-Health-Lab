@@ -1,4 +1,4 @@
-# AI Health Lab 🧠
+# AI Health Lab 
 
 AI Health Lab is a unified platform for advanced medical diagnostics and health monitoring, leveraging AI to predict diseases and analyze health data.
 
