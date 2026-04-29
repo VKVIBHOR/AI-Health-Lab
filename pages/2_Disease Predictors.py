@@ -16,37 +16,37 @@ from Components.footer import footer
 from utils.style_loader import load_css
 from utils.history import save_prediction, get_history
 
-# UI Navbar
-navbar()
-
-# Load CSS
 load_css()
+
+# UI Navbar
+navbar(active="predictors")
 
 # Wrap content in fade-in container
 st.markdown('<div class="animate-fade-in">', unsafe_allow_html=True)
 
-# Title Card
 st.markdown("""
-<div class="card" style="margin-bottom: 2rem; background-color: #FFEBEE;">
-    <h1 style="margin-bottom: 0.5rem;">🩺 Disease Predictors</h1>
-    <p style="font-size: 1.1rem; color: #555;">Select a disease model below to run a diagnostic analysis.</p>
+<div class="page-heading">
+    <h1>Disease Predictors</h1>
+    <p>Select a disease model below to run a diagnostic analysis.</p>
 </div>
 """, unsafe_allow_html=True)
 
 # ------------------------------
 # Select Model
 # ------------------------------
+st.markdown('<div class="clinical-card">', unsafe_allow_html=True)
 model_choice = st.selectbox(
-    "Select the disease model:",
+    "Diagnostic model",
     ["Heart Disease", "Diabetes", "Pneumonia (X-Ray)", "Brain Tumor (MRI)", "Skin Cancer", "Coming Soon..."]
 )
+st.markdown('</div>', unsafe_allow_html=True)
 
 st.divider()
 
 # ------------------------------
 # Upload Section
 # ------------------------------
-st.subheader("Upload your data")
+st.markdown('<div class="page-heading" style="margin-top:24px;margin-bottom:12px;"><h2>Input Source</h2><p>Upload a compatible file or enter clinical values manually.</p></div>', unsafe_allow_html=True)
 
 uploaded_img = None
 uploaded_csv = None
@@ -58,14 +58,14 @@ else:
 
 
 st.divider()
-st.subheader("Prediction Output")
+st.markdown('<div class="page-heading" style="margin-bottom:12px;"><h2>Prediction Output</h2><p>Model results, confidence values, and explanation tools appear here.</p></div>', unsafe_allow_html=True)
 
 # =======================================================
 #            HEART DISEASE PREDICTION LOGIC
 # =======================================================
 if model_choice == "Heart Disease":
 
-    st.subheader("🔧 Heart Disease Input Values")
+    st.markdown('<div class="label-caps" style="margin-bottom:12px;">Cardiac Risk Model</div>', unsafe_allow_html=True)
 
     # Load model + columns
     model_path = "models/heart_disease_model.pkl"
@@ -81,8 +81,7 @@ if model_choice == "Heart Disease":
 
     # Input Form
     with st.container():
-        st.markdown('<div class="medical-card animate-slide-up">', unsafe_allow_html=True)
-        st.markdown('<h3 class="medical-header">Patient Data</h3>', unsafe_allow_html=True)
+        st.markdown('<div class="medical-card animate-slide-up"><h3 class="card-title">Patient Data</h3><div class="card-subtitle">Clinical Parameters</div>', unsafe_allow_html=True)
         
         uploaded_csv = st.file_uploader("Upload CSV (Optional)", type=["csv"])
         
@@ -98,7 +97,7 @@ if model_choice == "Heart Disease":
             except Exception as e:
                 st.error(f"Error: {e}")
         else:
-            st.markdown("#### Patient Vitals")
+            st.markdown('<div class="label-caps" style="margin:8px 0 16px;">Patient Vitals</div>', unsafe_allow_html=True)
             col1, col2, col3 = st.columns(3)
             with col1:
                 age = st.number_input("Age", 20, 100, 50)
@@ -159,10 +158,9 @@ if model_choice == "Heart Disease":
 #            DIABETES PREDICTION LOGIC
 # =======================================================
 elif model_choice == "Diabetes":
-    st.subheader("🩸 Diabetes Input Values")
+    st.markdown('<div class="label-caps" style="margin-bottom:12px;">Metabolic Risk Model</div>', unsafe_allow_html=True)
     with st.container():
-        st.markdown('<div class="medical-card animate-slide-up">', unsafe_allow_html=True)
-        st.markdown('<h3 class="medical-header">Clinical Parameters</h3>', unsafe_allow_html=True)
+        st.markdown('<div class="medical-card animate-slide-up"><h3 class="card-title">Clinical Parameters</h3><div class="card-subtitle">Diabetes Screening</div>', unsafe_allow_html=True)
         col1, col2 = st.columns(2)
         with col1:
             pregnancies = st.number_input("Pregnancies", 0, 20, 1)
@@ -213,7 +211,7 @@ elif model_choice == "Diabetes":
 #            PNEUMONIA (X-RAY) PREDICTION LOGIC
 # =======================================================
 elif model_choice == "Pneumonia (X-Ray)":
-    st.subheader("🩻 Pneumonia Detection")
+    st.markdown('<div class="label-caps" style="margin-bottom:12px;">Respiratory Imaging Model</div>', unsafe_allow_html=True)
     
     if uploaded_img:
         st.image(uploaded_img, caption="Uploaded X-Ray", use_column_width=True)
@@ -228,10 +226,9 @@ elif model_choice == "Pneumonia (X-Ray)":
 #            BRAIN TUMOR (MRI) PREDICTION LOGIC
 # =======================================================
 elif model_choice == "Brain Tumor (MRI)":
-    st.subheader("🧠 Brain Tumor Detection")
+    st.markdown('<div class="label-caps" style="margin-bottom:12px;">Neurology Imaging Model</div>', unsafe_allow_html=True)
     with st.container():
-        st.markdown('<div class="medical-card animate-slide-up">', unsafe_allow_html=True)
-        st.markdown('<h3 class="medical-header">MRI Scan Upload</h3>', unsafe_allow_html=True)
+        st.markdown('<div class="medical-card animate-slide-up"><h3 class="card-title">MRI Scan Upload</h3><div class="card-subtitle">Brain Tumor Classification</div>', unsafe_allow_html=True)
         uploaded_img = st.file_uploader("Upload MRI Image", type=["png", "jpg", "jpeg"])
         
         if uploaded_img:
@@ -286,10 +283,9 @@ elif model_choice == "Brain Tumor (MRI)":
 #            SKIN CANCER PREDICTION LOGIC
 # =======================================================
 elif model_choice == "Skin Cancer":
-    st.subheader("🔬 Skin Cancer Detection")
+    st.markdown('<div class="label-caps" style="margin-bottom:12px;">Dermatology Imaging Model</div>', unsafe_allow_html=True)
     with st.container():
-        st.markdown('<div class="medical-card animate-slide-up">', unsafe_allow_html=True)
-        st.markdown('<h3 class="medical-header">Dermoscopy Upload</h3>', unsafe_allow_html=True)
+        st.markdown('<div class="medical-card animate-slide-up"><h3 class="card-title">Dermoscopy Upload</h3><div class="card-subtitle">Skin Lesion Classification</div>', unsafe_allow_html=True)
         uploaded_img = st.file_uploader("Upload Skin Image", type=["png", "jpg", "jpeg"])
         
         if uploaded_img:

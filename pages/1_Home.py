@@ -7,30 +7,46 @@ st.set_page_config(page_title="AI Health Lab", page_icon="🧠", layout="wide")
 
 from utils.style_loader import load_css
 
-navbar()
-
-# Load CSS
 load_css()
+navbar(active="dashboard")
 
-st.title("Welcome to AI Health Lab 🧠")
-st.write("Choose a feature from the sidebar or explore below.")
+st.html("""
+<div class="page-heading">
+    <h1>Patient Overview</h1>
+    <p>Choose a clinical workflow from the workspace navigation.</p>
+</div>
 
-# --- Feature Cards ---
-col1, col2, col3 = st.columns(3)
+<div class="clinical-grid">
+    <section class="clinical-card workflow-card span-4">
+        <div>
+            <h2 class="card-title">Disease Predictors</h2>
+            <p>Run AI-based models for heart disease, diabetes, brain tumor MRI, skin cancer, and imaging workflows.</p>
+        </div>
+        <div class="workflow-card-actions">
+            <a class="clinical-button primary" href="/Disease_Predictors" target="_self">Open</a>
+        </div>
+    </section>
 
-with col1:
-    st.subheader("🩺 Disease Predictors")
-    st.write("Run AI-based models for major diseases.")
-    st.button("Open", key="predictors")
+    <section class="clinical-card workflow-card span-4">
+        <div>
+            <h2 class="card-title">Digital Twin</h2>
+            <p>Generate a personalized health representation with integrated risk scoring and recommendations.</p>
+        </div>
+        <div class="workflow-card-actions">
+            <a class="clinical-button primary" href="/Digital_Twin" target="_self">Open</a>
+        </div>
+    </section>
 
-with col2:
-    st.subheader("🧬 Digital Twin")
-    st.write("Generate a personalized health representation.")
-    st.button("Open", key="digital_twin")
-
-with col3:
-    st.subheader("📊 Health Analytics")
-    st.write("Explore your health data with smart visualizations.")
-    st.button("Open", key="analytics")
+    <section class="clinical-card workflow-card span-4">
+        <div>
+            <h2 class="card-title">Health Analytics</h2>
+            <p>Explore symptom guidance, recent prediction context, and assistant workflows for care planning.</p>
+        </div>
+        <div class="workflow-card-actions">
+            <a class="clinical-button primary" href="/Health_Analytics" target="_self">Open</a>
+        </div>
+    </section>
+</div>
+""")
 
 footer()

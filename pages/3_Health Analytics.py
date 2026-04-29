@@ -4,20 +4,23 @@ from Components.footer import footer
 from utils.chatbot import get_bot_response
 import streamlit as st
 
-navbar()
 load_css()
+navbar(active="assistant")
 
-# Title Card
 st.markdown("""
-<div class="card" style="margin-bottom: 2rem; background-color: #E8F5E9;">
-    <h1 style="margin-bottom: 0.5rem;">📊 Health Analytics</h1>
-    <p style="font-size: 1.1rem; color: #555;"></p>
+<div class="page-heading">
+    <h1>AI Health Assistant</h1>
+    <p>Structured symptom guidance and care recommendations from the platform knowledge base.</p>
 </div>
 """, unsafe_allow_html=True)
 
 # --- Chatbot Section ---
-st.subheader("🤖 AI Health Assistant")
-st.write("Describe your symptoms (e.g., 'I have a headache and fever') to get instant advice.")
+st.markdown("""
+<div class="clinical-card ai-insight" style="margin-bottom:24px;">
+    <div class="card-subtitle" style="color:#d85c63;">Symptom Triage</div>
+    <p style="margin:10px 0 0;line-height:1.6;">Describe your symptoms, for example "I have a headache and fever", to get instant advice.</p>
+</div>
+""", unsafe_allow_html=True)
 
 # Initialize chat history
 if "messages" not in st.session_state:

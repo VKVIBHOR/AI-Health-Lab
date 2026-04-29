@@ -1,229 +1,790 @@
-/* GLOBAL PAGE RESET */
-/* Streamlit handles the body background via config.toml */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@300;400;500;600&display=swap');
 
-/* REMOVE EXCESS PADDING */
-/* REMOVE EXCESS PADDING - Handled below */
+:root {
+    --surface: #ffffff;
+    --surface-lowest: #ffffff;
+    --surface-low: #f8fafc;
+    --surface-container: #f3f6f8;
+    --surface-high: #eef2f6;
+    --surface-variant: #e5e7eb;
+    --on-surface: #111827;
+    --on-surface-variant: #374151;
+    --outline: #737784;
+    --outline-variant: #d1d5db;
+    --primary: #b9474f;
+    --primary-container: #d85c63;
+    --secondary: #475569;
+    --tertiary: #9f3e46;
+    --tertiary-container: #d85c63;
+    --error: #b4232b;
+    --error-container: #ffe1e3;
+    --success-bg: #fff0f1;
+    --warning-bg: #fff3d6;
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.03);
+    --shadow-lift: 0 10px 24px rgba(15, 23, 42, 0.08);
+    --radius-sm: 4px;
+    --radius-md: 6px;
+    --radius-lg: 8px;
+    --nav-width: 256px;
+}
 
-/* TYPOGRAPHY */
+html,
+body,
+[data-testid="stAppViewContainer"] {
+    background: var(--surface) !important;
+}
+
+.stApp {
+    background: var(--surface) !important;
+}
+
+body,
+p,
+label,
+span,
+div,
+button,
+input,
+textarea,
+select {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--on-surface);
+    letter-spacing: 0;
+}
+
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--on-surface);
+    letter-spacing: 0;
+}
+
+h1 {
+    font-size: 32px;
+    line-height: 1.2;
     font-weight: 700;
-    color: #1d1d1f;
-    /* Apple dark gray */
 }
 
-p,
-label,
-span,
-div {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: #333333;
+h2 {
+    font-size: 24px;
+    line-height: 1.3;
+    font-weight: 600;
 }
 
-/* APPLE-STYLE CARDS */
-.card {
+h3 {
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 22px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+}
+
+/* Streamlit frame */
+[data-testid="stHeader"] {
+    background: transparent !important;
+    height: 0;
+}
+
+[data-testid="stToolbar"] {
+    right: 16px !important;
+}
+
+[data-testid="stSidebar"] {
+    background: var(--surface-low) !important;
+    border-right: 1px solid var(--surface-variant);
+}
+
+.block-container {
+    max-width: 1240px;
+    padding: 32px 32px 48px calc(var(--nav-width) + 32px) !important;
+}
+
+section.main > div {
+    background: var(--surface);
+}
+
+/* Fixed clinical navigation */
+.clinical-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: var(--nav-width);
     background: #ffffff;
-    padding: 30px;
-    border-radius: 24px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    height: 100%;
-    min-height: 280px;
-    /* Ensure equal height */
+    border-right: 1px solid #e2e8f0;
+    z-index: 99999;
+    padding: 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.clinical-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 4px 24px;
+}
+
+.clinical-brand-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--primary-container);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+}
+
+.clinical-brand-title {
+    color: var(--on-surface);
+    font-size: 22px;
+    line-height: 0.95;
+    font-weight: 800;
+    display: block;
+}
+
+.clinical-brand-kicker,
+.label-caps {
+    color: #334155;
+    font-family: 'Manrope', 'Inter', sans-serif;
+    font-size: 12px;
+    line-height: 1.1;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.clinical-new-analysis {
+    background: #fff5f6;
+    color: var(--primary) !important;
+    border: 1px solid #ffd0d4;
+    border-radius: var(--radius-sm);
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-decoration: none !important;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: var(--shadow-soft);
+}
+
+.clinical-new-analysis span,
+.clinical-new-analysis strong {
+    color: var(--primary) !important;
+}
+
+.clinical-nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.clinical-nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 48px;
+    padding: 0 16px;
+    border-radius: var(--radius-md);
+    color: #334155 !important;
+    text-decoration: none !important;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+}
+
+.clinical-nav-link:hover {
+    background: #fff5f6;
+    color: var(--primary) !important;
+}
+
+.clinical-nav-link.is-active {
+    background: #fff5f6;
+    color: var(--primary-container) !important;
+    border: 1px solid #ffd0d4;
+    box-shadow: var(--shadow-soft);
+}
+
+.clinical-nav-footer {
+    margin-top: auto;
+    border-top: 1px solid #dbe2ea;
+    padding-top: 16px;
+}
+
+.clinical-mobile-bar {
+    display: none;
+}
+
+/* Layout primitives translated from Stitch */
+.page-heading {
+    margin-bottom: 24px;
+}
+
+.page-heading h1,
+.page-heading h2 {
+    margin: 0 0 8px;
+}
+
+.page-heading p {
+    margin: 0;
+    color: var(--secondary);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.clinical-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.span-3 { grid-column: span 3; }
+.span-4 { grid-column: span 4; }
+.span-6 { grid-column: span 6; }
+.span-8 { grid-column: span 8; }
+.span-12 { grid-column: span 12; }
+
+.card,
+.medical-card,
+.clinical-card {
+    background: var(--surface-lowest);
+    border: 1px solid var(--surface-variant);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    padding: 24px;
+    min-height: auto;
+    height: auto;
+    transition: box-shadow 160ms ease, transform 160ms ease, border-color 160ms ease;
+}
+
+.card:hover,
+.clinical-card:hover {
+    box-shadow: var(--shadow-lift);
+    transform: translateY(-1px);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 20px;
+    line-height: 1.4;
+    font-weight: 700;
+    color: var(--on-surface);
+}
+
+.workflow-card {
+    min-height: 300px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    gap: 24px;
 }
 
-/* MEDICAL CARD OVERRIDES */
-.medical-card {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 20px;
-    /* border-left removed to avoid curved bracket look */
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    margin-bottom: 20px;
-    transition: transform 0.2s;
+.workflow-card .card-title {
+    min-height: 56px;
+    display: flex;
+    align-items: flex-start;
 }
 
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
-}
-
-/* BUTTONS */
-.stButton>button {
-    background-color: #007AFF !important;
-    /* Apple Blue */
-    color: white !important;
-    padding: 0.6rem 1.2rem;
-    border-radius: 980px;
-    /* Pill shape */
-    border: none;
+.workflow-card p {
+    color: var(--secondary);
     font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+    text-align: left;
+}
+
+.workflow-card-actions {
+    margin-top: auto;
+}
+
+.card-subtitle {
+    margin-top: 6px;
+    color: #334155;
+    font-family: 'Manrope', 'Inter', sans-serif;
+    font-size: 12px;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.metric-display {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    margin: 18px 0 28px;
+}
+
+.metric-value {
+    color: #111827;
+    font-size: 64px;
+    line-height: 0.9;
+    font-weight: 800;
+}
+
+.metric-unit {
+    color: #334155;
+    font-size: 16px;
+    line-height: 1.2;
+    padding-bottom: 6px;
+}
+
+.metric-row {
+    border-top: 1px solid var(--surface-variant);
+    padding-top: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.data-label {
+    color: #334155;
+    font-family: 'Manrope', 'Inter', sans-serif;
+    font-size: 12px;
+    line-height: 1.1;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+}
+
+.data-value {
+    color: var(--on-surface);
+    font-size: 14px;
+    line-height: 1.2;
     font-weight: 600;
-    box-shadow: 0 2px 8px rgba(0, 122, 255, 0.2);
-    transition: all 0.2s ease;
+    font-variant-numeric: tabular-nums;
 }
 
-.stButton>button:hover {
-    background-color: #0062cc !important;
-    transform: scale(1.02);
-    box-shadow: 0 4px 12px rgba(0, 122, 255, 0.3);
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 13px;
+    line-height: 1;
+    font-weight: 700;
+    white-space: nowrap;
 }
 
-/* INPUT FIELDS */
-input,
-textarea,
-select,
-.stTextInput>div>div>input {
-    border-radius: 12px !important;
-    border: 1px solid #e5e5e5 !important;
-    background-color: #fbfbfd !important;
-    color: #1d1d1f !important;
-    transition: border-color 0.2s ease;
+.status-badge::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: currentColor;
 }
 
-input:focus,
-textarea:focus,
-select:focus,
-.stTextInput>div>div>input:focus {
-    border-color: #007AFF !important;
-    box-shadow: 0 0 0 2px rgba(0, 122, 255, 0.1) !important;
+.status-normal {
+    background: var(--success-bg);
+    color: var(--tertiary-container);
 }
 
-/* NAVBAR */
-.navbar {
-    background-color: rgba(255, 255, 255, 0.98);
-    /* High opacity white */
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    padding: 1rem 2rem;
-    position: fixed;
-    /* Changed from sticky to fixed to ensure it stays on top */
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999999;
-    /* High z-index to sit above Streamlit elements */
+.status-low {
+    background: #eef2f7;
+    color: #334155;
+}
+
+.status-warning {
+    background: var(--warning-bg);
+    color: #92400e;
+}
+
+.status-critical {
+    background: var(--error-container);
+    color: #93000a;
+}
+
+.ai-insight {
+    border-left: 4px solid var(--tertiary-container);
+}
+
+.ai-insight .card-title,
+.ai-insight .material-symbols-outlined {
+    color: var(--tertiary-container);
+}
+
+.risk-card {
+    padding: 20px;
+}
+
+.risk-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 18px;
+    color: var(--primary-container);
+}
+
+.risk-title strong {
+    color: var(--on-surface);
+    font-size: 20px;
+}
+
+.risk-bar {
+    width: 100%;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--surface-variant);
+    overflow: hidden;
+    margin-bottom: 14px;
+}
+
+.risk-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: var(--primary-container);
+}
+
+.risk-fill.salmon-soft {
+    background: #ef8a8f;
+}
+
+.risk-fill.error {
+    background: var(--error);
+}
+
+.risk-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
-    /* Fixed height */
+    gap: 12px;
 }
 
-/* Ensure Streamlit Toolbar (Deploy button, Hamburger) is visible */
-header[data-testid="stHeader"] {
-    z-index: 1000000 !important;
-    background: transparent !important;
-}
-
-/* Adjust block-container to account for fixed navbar */
-.block-container {
-    padding-top: 6rem !important;
-    /* Push content down */
-    padding-bottom: 2rem;
-}
-
-.nav-logo {
-    font-size: 1.2rem;
+.compact-badge {
+    border-radius: var(--radius-sm);
+    padding: 4px 8px;
+    background: var(--surface-variant);
+    color: var(--on-surface-variant);
+    font-family: 'Manrope', 'Inter', sans-serif;
+    font-size: 10px;
+    line-height: 1;
     font-weight: 700;
-    color: #1d1d1f;
-    text-decoration: none;
-    display: flex;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.compact-badge.critical {
+    background: var(--error-container);
+    color: #93000a;
+}
+
+.facility-card {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) 2fr;
+    padding: 0;
+    overflow: hidden;
+}
+
+.facility-panel {
+    padding: 24px;
+    border-right: 1px solid var(--surface-variant);
+}
+
+.facility-list {
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 14px;
+}
+
+.facility-list li {
+    display: grid;
+    grid-template-columns: 20px 1fr;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.map-panel {
+    min-height: 320px;
+    background:
+        radial-gradient(circle at 62% 58%, rgba(216, 92, 99, 0.24), transparent 0 6%, transparent 8%),
+        linear-gradient(25deg, transparent 0 47%, rgba(216, 92, 99, 0.7) 48% 49%, transparent 50%),
+        linear-gradient(75deg, transparent 0 45%, rgba(216, 92, 99, 0.45) 46% 47%, transparent 48%),
+        linear-gradient(115deg, transparent 0 44%, rgba(216, 92, 99, 0.4) 45% 46%, transparent 47%),
+        linear-gradient(155deg, transparent 0 48%, rgba(216, 92, 99, 0.42) 49% 50%, transparent 51%),
+        repeating-linear-gradient(0deg, rgba(216, 92, 99, 0.18) 0 1px, transparent 1px 34px),
+        repeating-linear-gradient(90deg, rgba(216, 92, 99, 0.16) 0 1px, transparent 1px 42px),
+        #111827;
+    position: relative;
+}
+
+.map-pin {
+    position: absolute;
+    left: 60%;
+    top: 56%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 999px 999px 999px 4px;
+    rotate: 45deg;
+    background: var(--primary-container);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.25);
+}
+
+.map-pin::after {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border-radius: 999px;
+    background: white;
+}
+
+.clinical-button {
+    display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
+    justify-content: center;
+    gap: 8px;
+    min-height: 40px;
+    border-radius: var(--radius-sm);
+    border: 1px solid #ffd0d4;
+    padding: 0 16px;
+    color: var(--primary) !important;
+    text-decoration: none !important;
+    font-size: 14px;
+    font-weight: 700;
+    background: #fff5f6;
 }
 
-.nav-links {
-    display: flex;
-    gap: 2rem;
+.clinical-button.primary {
+    background: var(--primary-container);
+    border-color: var(--primary-container);
+    color: white !important;
 }
 
-.nav-link {
-    color: #86868b;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.2s ease;
+.clinical-table-note {
+    color: var(--secondary);
+    font-size: 13px;
+    margin-top: 8px;
 }
 
-.nav-link:hover {
-    color: #007AFF;
+.animate-fade-in {
+    animation: fadeIn 420ms ease-out both;
 }
 
-/* FOOTER */
-.footer {
-    margin-top: 4rem;
-    padding: 2rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.05);
-    color: #86868b;
-    font-size: 0.85rem;
-    text-align: center;
-}
-
-/* ANIMATIONS */
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(8px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-.animate-fade-in {
-    animation: fadeIn 0.6s ease-out forwards;
+/* Streamlit controls */
+.stButton > button,
+[data-testid="stFormSubmitButton"] button {
+    background: var(--primary-container) !important;
+    color: white !important;
+    border: 1px solid var(--primary-container) !important;
+    border-radius: var(--radius-sm) !important;
+    min-height: 40px;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    box-shadow: var(--shadow-soft);
 }
 
-/* MEDICAL CARD OVERRIDES */
-.medical-card {
-    background: #ffffff;
-    padding: 25px;
-    border-radius: 20px;
-    /* border-left removed to avoid curved bracket look */
-    position: relative;
+.stButton > button:hover,
+[data-testid="stFormSubmitButton"] button:hover {
+    background: var(--primary) !important;
+    border-color: var(--primary) !important;
+    box-shadow: var(--shadow-lift);
+}
+
+input,
+textarea,
+select,
+[data-baseweb="select"] > div,
+[data-testid="stNumberInput"] input,
+[data-testid="stTextInput"] input,
+[data-testid="stTextArea"] textarea {
+    border-radius: var(--radius-sm) !important;
+    border-color: #e2e8f0 !important;
+    background-color: white !important;
+    color: var(--on-surface) !important;
+    box-shadow: none !important;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+[data-baseweb="select"] > div:focus-within {
+    border-color: var(--primary-container) !important;
+    box-shadow: 0 0 0 2px rgba(216, 92, 99, 0.16) !important;
+}
+
+[data-testid="stDataFrame"] {
+    border: 1px solid var(--surface-variant);
+    border-radius: var(--radius-lg);
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    margin-bottom: 20px;
-    transition: transform 0.2s;
+    box-shadow: var(--shadow-soft);
 }
 
-.medical-card::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 20px;
-    /* Detach from top corner */
-    bottom: 20px;
-    /* Detach from bottom corner */
-    width: 3px;
-    /* Thinner width */
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    background-color: #008080;
+[data-testid="stMetric"] {
+    background: white;
+    border: 1px solid var(--surface-variant);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    box-shadow: var(--shadow-soft);
 }
 
-.medical-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+.stAlert {
+    border-radius: var(--radius-lg) !important;
 }
 
-.medical-header {
-    color: #008080;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+.footer {
+    margin-top: 48px;
+    padding: 20px 0 0;
+    border-top: 1px solid var(--surface-variant);
+    color: var(--secondary);
+    font-size: 13px;
+    text-align: left;
+}
+
+.footer p {
+    color: var(--secondary);
+}
+
+@media (max-width: 900px) {
+    :root {
+        --nav-width: 0px;
+    }
+
+    .clinical-sidebar {
+        display: none;
+    }
+
+    .clinical-mobile-bar {
+        display: flex;
+        position: sticky;
+        top: 0;
+        z-index: 99999;
+        align-items: center;
+        justify-content: space-between;
+        height: 64px;
+        margin: -16px -16px 24px;
+        padding: 0 16px;
+        background: white;
+        border-bottom: 1px solid var(--surface-variant);
+    }
+
+    .clinical-mobile-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 800;
+        color: var(--primary-container);
+    }
+
+    .block-container {
+        padding: 16px 16px 40px !important;
+    }
+
+    .clinical-grid,
+    .facility-card {
+        grid-template-columns: 1fr;
+    }
+
+    .span-3,
+    .span-4,
+    .span-6,
+    .span-8,
+    .span-12 {
+        grid-column: span 1;
+    }
+
+    .metric-value {
+        font-size: 52px;
+    }
+
+    .metric-row {
+        grid-template-columns: 1fr;
+    }
+
+    .facility-panel {
+        border-right: 0;
+        border-bottom: 1px solid var(--surface-variant);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --surface: #ffffff;
+        --surface-lowest: #ffffff;
+        --surface-low: #f8fafc;
+        --surface-container: #f3f6f8;
+        --surface-high: #eef2f6;
+        --surface-variant: #e5e7eb;
+        --on-surface: #111827;
+        --on-surface-variant: #374151;
+        --secondary: #475569;
+        --outline-variant: #d1d5db;
+        --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.03);
+        --shadow-lift: 0 10px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .clinical-sidebar,
+    .clinical-mobile-bar,
+    .card,
+    .clinical-card,
+    .medical-card,
+    [data-testid="stMetric"] {
+        background: #ffffff !important;
+        border-color: #e5e7eb !important;
+    }
+
+    .clinical-nav-link.is-active {
+        background: #fff5f6;
+    }
+
+    .clinical-nav-link:hover {
+        background: #fff5f6;
+    }
+
+    input,
+    textarea,
+    select,
+    [data-baseweb="select"] > div,
+    [data-testid="stNumberInput"] input,
+    [data-testid="stTextInput"] input,
+    [data-testid="stTextArea"] textarea {
+        background-color: #ffffff !important;
+        border-color: #e2e8f0 !important;
+        color: #111827 !important;
+    }
 }
