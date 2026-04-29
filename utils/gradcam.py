@@ -1,8 +1,8 @@
 import torch
 import torch.nn.functional as F
 import numpy as np
-import cv2
 import matplotlib.pyplot as plt
+from PIL import Image
 
 class GradCAM:
     def __init__(self, model, target_layer):
@@ -59,15 +59,14 @@ def visualize_cam(mask, img):
     img: PIL Image
     Returns: matplotlib figure
     """
-    # Resize mask to image size
-    img_np = np.array(img)
-    heatmap = cv2.resize(mask, (img_np.shape[1], img_np.shape[0]))
-    
-    # Colorize heatmap
-    heatmap = np.uint8(255 * heatmap)
-    heatmap = cv2.applyColorMap(heatmap, cv2.COLORMAP_JET)
-    
-    # Superimpose
+    img_rgb = img.convert("RGB")
+    img_np = np.array(img_rgb)
+
+    mask_img = Image.fromarray(np.uint8(mask * 255), mode="L")
+    mask_img = mask_img.resize(img_rgb.size, Image.Resampling.BILINEAR)
+    heatmap = plt.get_cmap("jet")(np.array(mask_img) / 255.0)[:, :, :3]
+    heatmap = np.uint8(heatmap * 255)
+
     superimposed_img = heatmap * 0.4 + img_np * 0.6
     superimposed_img = np.uint8(superimposed_img)
     
@@ -77,4 +76,3 @@ def visualize_cam(mask, img):
     ax.axis('off')
     
     return fig
-
